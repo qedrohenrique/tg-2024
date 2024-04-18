@@ -29,17 +29,17 @@ def linear_congruential(a, b, m, initialValue, iterations):
   return sequence
 
 def divisors(start, end):
-    divisors = {}
-    
-    for num in range(start, end + 1):
-        count = 0
-        num_divisors = []
-        for i in range(1, num + 1):
-            if num % i == 0:
-                count += 1
-                num_divisors.append(i)
+    divisors = {i: [0, []] for i in range(start, end + 1)}
 
-        divisors[num] = (count, num_divisors)
+    for num in range(start, end + 1):
+        divisor = num
+        multiplier_index = 1
+        while divisor <= end:
+          value = divisors[divisor]
+          value[0] += 1
+          value[1].append(num)
+          multiplier_index += 1
+          divisor = num * multiplier_index
     
     return divisors
 
